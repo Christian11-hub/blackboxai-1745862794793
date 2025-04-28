@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RPG de Turno com Emojis</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+    }
+    .emoji {
+      font-size: 4rem;
+      transition: transform 0.3s ease;
+    }
+    .attack-animation {
+      animation: attack-move 0.5s ease forwards;
+    }
+    @keyframes attack-move {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(20px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center p-4">
+  <h1 class="text-3xl mb-6">RPG de Turno com Emojis 🎮⚔️</h1>
+  <div class="w-full max-w-3xl bg-gray-800 rounded-lg p-6 shadow-lg">
+    <div class="flex justify-between mb-6">
+      <div class="flex flex-col items-center">
+        <div id="player-emoji" class="emoji">🧙‍♂️</div>
+        <div class="mt-2">Jogador</div>
+        <div class="w-48 h-4 bg-gray-700 rounded-full mt-2 overflow-hidden">
+          <div id="player-health" class="bg-green-500 h-full rounded-full transition-all duration-300"></div>
+        </div>
+        <div id="player-health-text" class="mt-1 text-sm">HP: 100</div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div id="enemy-emoji" class="emoji">👹</div>
+        <div class="mt-2">Inimigo</div>
+        <div class="w-48 h-4 bg-gray-700 rounded-full mt-2 overflow-hidden">
+          <div id="enemy-health" class="bg-red-600 h-full rounded-full transition-all duration-300"></div>
+        </div>
+        <div id="enemy-health-text" class="mt-1 text-sm">HP: 100</div>
+      </div>
+    </div>
+    <div id="message" class="mb-6 h-16 text-center text-lg"></div>
+    <div class="flex justify-center space-x-4">
+      <button id="attack-btn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded shadow">⚔️ Atacar</button>
+      <button id="defend-btn" class="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded shadow">🛡️ Defender</button>
+      <button id="spell-btn" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded shadow">✨ Magia</button>
+    </div>
+    <div class="flex justify-center mt-4">
+      <button id="restart-btn" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded shadow text-white">🔄 Reiniciar Jogo</button>
+    </div>
+    <div id="inventory" class="mt-6 bg-gray-700 rounded p-4 min-h-[80px]">
+      <h2 class="text-lg mb-2">Inventário 🧰</h2>
+      <div id="inventory-items" class="flex space-x-4 flex-wrap"></div>
+    </div>
+  </div>
+  <div id="event-explanation" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden">
+    <div class="bg-gray-800 rounded-lg p-6 max-w-lg w-full text-center">
+      <div id="event-explanation-content" class="mb-4 text-lg"></div>
+      <button id="event-explanation-close" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded shadow text-white">Fechar</button>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
